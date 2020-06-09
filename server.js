@@ -1,8 +1,10 @@
 const express = require("express");
-
-const logger = require("kiki");
-
+const logger = require("morgan");
 const monogoose = require("mongoose");
+const mongojs = require ("mongojs");
+const mongdb = mongojs('workout', ['workouts']);
+const path = require("path");
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -16,11 +18,11 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-monogoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 
     useNewUrlParser: true,
 
-    useFindAndModify: false
+    // useFindAndModify: false
 
 });
 
